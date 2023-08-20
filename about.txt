@@ -1,0 +1,18 @@
+Packages used:
+1: react v18
+2: tailwind css
+3: luxon
+4: react-toastify
+
+Tasks Completed:
+1: Completed implementing the weather app
+2: message displayed correctly when data is fetched. 
+3: DArk mode implemented.
+4: Display weather description (e.g., sunny, rainy, etc.) implemented
+5: Show an appropriate icon/image based on the current weather implemented
+6: Display additional info: humidity, wind speed, etc.
+
+Tasks that couldnt be completed due to open weather api restrictions and some other things:
+1: couldnt fetch daily and weekly timestamps because they blocked the feature and are requiring money.
+2: didnt implement redux or context api cause there was no need to fetch the api from there.
+3: due to certain packages like luxon or toastify the app couldnt be uploaded timely on vercel thats why i only uploaded it to github.
