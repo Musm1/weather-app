@@ -1,16 +1,17 @@
 import React from 'react'
+import { formatToLocalTime } from '../logic/weatherLogic'
 
-function TimeLocation() {
+function TimeLocation({weather : {dt, name, country}}) {
   return (
     <div className=''>
         <div className='flex items-center justify-center my-6'>
-            <p className='text-white text-xl font-extralight'>
-                Tuesday, 31 May, 2022 | 12.36pm
+            <p className='text-xl text-white font-extralight'>
+                {formatToLocalTime(dt)}
             </p>
         </div>
         <div className='flex items-center justify-center my-3'>
-            <p className='text-white text-3xl font-medium'>
-                Karachi, PK
+            <p className='text-3xl font-medium text-white'>
+                {`${name}, ${country}`}
             </p>
         </div>
     </div>
