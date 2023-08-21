@@ -51,7 +51,7 @@ const handleTheme= ()=>{
             <div className='text-lg font-medium text-white'>
                 Mishkat Weather App
             </div>
-           <UilLightbulb size={32} onClick={handleTheme}/>
+           <UilLightbulb size={32} onClick={handleTheme} className={`${theme=== "dark" ? 'fill-white' : 'fill-black'} transition ease-out cursor-pointer hover:scale-125` }/>
           </div>
         <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
 
