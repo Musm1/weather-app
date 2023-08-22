@@ -9,6 +9,9 @@ const getWeatherData= (infoType, searchParams) =>{
     })
     return fetch(url)
     .then((res)=>res.json())
+    .catch(err=>{
+        console.log('this is the first console log',err)
+    })
 };
 
 const formatCurrentWeather= (data)=>{
@@ -50,6 +53,10 @@ const formatForecastWeather= (data)=>{
 const getFormattedWeatherData= async (searchParams) => {
     const formattedCurrentWeather= await getWeatherData('weather', searchParams)
     .then(formatCurrentWeather)
+    .catch(err=>{
+       const error= `Plz try correct spelling, this place doesnt exist`;
+       console.log(error)
+    })
 
     const {lat, lon}= formattedCurrentWeather
 
@@ -59,6 +66,9 @@ const getFormattedWeatherData= async (searchParams) => {
         exclude: 'current,minutely,alerts', 
         units: searchParams.units
     }).then(formatForecastWeather)
+    .catch(err=>{
+        console.log('this is the third console log',err)
+    })
     return {...formattedCurrentWeather, ...formattedForecastWeather}
 }
 
