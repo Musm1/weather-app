@@ -15,7 +15,8 @@ function App() {
   const [query, setQuery]= useState({q: 'peshawar'});
   const [units, setUnits]= useState('metric');
   const [weather, setWeather]= useState(null);
-  const [err, setError]= useState(null);
+  const [newerr, setNewError]= useState(false);
+  
   //darkmode
   const [theme, setTheme]= useState("light");
 
@@ -36,9 +37,10 @@ function App() {
     .then((data)=>{
       toast.success(`Successfully fetched the weather for ${data.name}, ${data.country}`)
       setWeather(data)
+      setNewError(false)
     })
     .catch(err=>{
-      setError("Try a different name, this name doesnt exist");
+      setNewError(true)
     })
   }
   fetchWeather();
@@ -58,9 +60,9 @@ const handleTheme= ()=>{
            <UilLightbulb size={32} onClick={handleTheme} className={`${theme=== "dark" ? 'fill-white' : 'fill-black'} transition ease-out cursor-pointer hover:scale-125` }/>
           </div>
         <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
-        {err && (
-          <div className='flex text-white items-center justify-center m-auto'>
-            {err}
+        {newerr && (
+          <div className='flex items-center justify-center m-auto text-white'>
+            <span>Try a different name, this name doesnt exist</span>
           </div>
         )}
 
