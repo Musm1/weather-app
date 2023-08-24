@@ -52,17 +52,17 @@ const handleTheme= ()=>{
 
   return (
     <div className='dark:bg-black'>
-      <div className='max-w-screen-md py-5 pt-4 mx-auto shadow-xl px-28 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-gray-400'>
-          <div className='flex items-center justify-around my-6'>
-            <div className='text-lg font-medium text-white'>
+      <div className='max-w-screen-md md:w-[768px] py-5 pt-4 mx-auto shadow-xl px-28 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-gray-400'>
+          <div className='flex flex-col items-center justify-around my-6 md:flex-row'>
+            <div className='text-lg font-medium text-center text-white'>
                 Mishkat Weather App
             </div>
-           <UilLightbulb size={32} onClick={handleTheme} className={`${theme=== "dark" ? 'fill-white' : 'fill-black'} transition ease-out cursor-pointer hover:scale-125` }/>
+           <UilLightbulb size={32} onClick={handleTheme} className={`${theme=== "dark" ? 'fill-white' : 'fill-black'} transition ease-out cursor-pointer hover:scale-125 mt-4 md:mt-0 ` }/>
           </div>
         <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
         {newerr && (
           <div className='flex items-center justify-center m-auto text-white'>
-            <span>Try a different name, this name doesnt exist</span>
+            <span className='items-center justify-center text-center'>Try a different name, this name doesnt exist</span>
           </div>
         )}
 
