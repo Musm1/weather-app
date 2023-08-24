@@ -33,13 +33,13 @@ const handleUnitChange=(e)=>{
   return (
     <div className='flex flex-col justify-center my-6 md:flex-row'>
 
-      <div className='flex flex-col items-center justify-center md:flex-row'>
+      <div className='flex flex-col items-center justify-center w-3/4 space-x-4 md:flex-row'>
         <input 
         type='text'
         value={city}
         onChange={(e)=>setCity(e.currentTarget.value)} 
         placeholder='Search...'
-        className='p-2 mx-[-4rem] text-xl font-light capitalize focus:outline-none placeholder:lowercase dark:bg-black dark:text-white'/>
+        className='p-2 text-xl font-light capitalize focus:outline-none placeholder:lowercase dark:bg-black dark:text-white'/>
         <div className='flex flex-row items-center justify-center mt-3 md:mt-0'>
         <UilSearch
           onClick={handleClick}
