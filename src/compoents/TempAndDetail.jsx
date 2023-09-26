@@ -11,10 +11,10 @@ import {
 import { formatToLocalTime, iconUrlFromCode } from '../logic/weatherLogic'
 
 function TempAndDetail({weather: {
-    details, icon, temp, temp_min, temp_max, sunrise, sunset, speed, humidity, feels_like
+    details, icon, temp, temp_min, temp_max, speed, humidity, feels_like
 }}) {
   return (
-    <div>
+    <div data-testid='temp-1'>
         <div className='flex items-center justify-center py-6 text-xl text-cyan-300'>
             <p>{details}</p>
         </div>

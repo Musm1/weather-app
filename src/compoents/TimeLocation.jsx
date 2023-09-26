@@ -3,7 +3,7 @@ import { formatToLocalTime } from '../logic/weatherLogic'
 
 function TimeLocation({weather : {dt, name, country}}) {
   return (
-    <div>
+    <div data-testid='time-1'>
         <div className='flex items-center justify-center my-6'>
             <p className='text-xl font-light text-center text-black dark:text-white '>
                 {formatToLocalTime(dt)}
