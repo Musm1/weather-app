@@ -33,7 +33,7 @@ const handleUnitChange=(e)=>{
   return (
     <div className='flex flex-col justify-center my-6 md:flex-row'>
 
-      <div className='flex flex-col items-center justify-center w-full space-x-4 md:w-3/4 md:flex-row'>
+      <div className='flex flex-col items-center justify-center space-x-4 sm:w-2/4 md:w-3/4 md:flex-row'>
         <input 
         type='text'
         value={city}
