@@ -40,6 +40,7 @@ function App() {
       setNewError(false)
     })
     .catch(err=>{
+      toast.error(`Couldnt fetch result`)
       setNewError(true)
     })
   }
@@ -51,18 +52,20 @@ const handleTheme= ()=>{
 }
 
   return (
-    <div className='dark:bg-black'>
-      <div className='max-w-screen-md md:w-[768px] py-5 pt-4 mx-auto shadow-xl px-28 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-gray-400'>
+    <div className='h-screen md:flex dark:bg-black'>
+      <div className='md:my-6 max-w-screen-md md:w-[768px] sm:w-[640px] py-5 pt-4 mx-auto
+       shadow-xl px-28 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit
+        shadow-gray-700 dark:bg-gradient-to-r dark:from-slate-600 dark:to-slate-900'>
           <div className='flex flex-col items-center justify-around my-6 md:flex-row'>
-            <div className='text-lg font-medium text-center text-white'>
+            <div className='text-lg font-medium text-center text-black dark:text-white'>
                 Mishkat Weather App
             </div>
            <UilLightbulb size={32} onClick={handleTheme} className={`${theme=== "dark" ? 'fill-white' : 'fill-black'} transition ease-out cursor-pointer hover:scale-125 mt-4 md:mt-0 ` }/>
           </div>
         <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
         {newerr && (
-          <div className='flex items-center justify-center m-auto text-white'>
-            <span className='items-center justify-center text-center'>Try a different name, this name doesnt exist</span>
+          <div className='flex items-center justify-center m-auto'>
+            <span className='items-center justify-center text-center text-black dark:text-white'>This Name doesnt exist, Try a different name</span>
           </div>
         )}
 
@@ -70,8 +73,14 @@ const handleTheme= ()=>{
           <div>
               <TimeLocation weather={weather}/>
               <TempAndDetail weather={weather}/>
-              <Forecast title={"Hourly Forecast (Cant fetch hourly and daily Cause of new paying limitations.)"}/>
-              <Forecast title={"Daily Forecast (Cant fetch hourly and daily Cause of new paying limitations.)"}/>
+              <hr className='my-2'/>
+              <div className='text-black dark:text-white'>
+                OpenWeatherMap has closed the hourly forecast for Free 
+                users and is charging USD even for Testing, That is why
+                I didnt Use the hourly/ weekly forecast
+              </div>
+              {/* <Forecast title={"Hourly Forecast (Cant fetch hourly and daily Cause of new paying limitations.)"}/>
+              <Forecast title={"Daily Forecast (Cant fetch hourly and daily Cause of new paying limitations.)"}/> */}
           </div>
         )}
 
