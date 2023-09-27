@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {UilSearch, UilLocationPoint} from '@iconscout/react-unicons'
 import { ToastContainer, toast } from 'react-toastify';
 
 function Inputs({setQuery, setUnits, units}) {
   const [city, setCity]= useState("");
+
+  const [term, setTerm]= useState('');
+  const [options, setOptions]= useState([]);
+  const [addOpt, setAddOpt]= useState(null);
 
 const handleClick=()=>{
   if(city!== ''){
@@ -30,16 +34,65 @@ const handleUnitChange=(e)=>{
   const selectedUnit= e.currentTarget.name
   if(units !== selectedUnit) setUnits(selectedUnit);
 }
+
+//new search options test
+
+const getSearchOptions=(value)=>{
+  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&appid=${
+    process.env.REACT_APP_API_KEY
+  }`).then((res)=> res.json()
+  ).then((data)=> setOptions(data))
+  .catch(err=>{
+    toast.error(`Couldnt fetch result, Try new name`)
+  })
+}
+
+const onInputChange= (e)=>{
+  const value=e.currentTarget.value.trim();
+  setTerm(value);
+  if(value === '') return;
+  getSearchOptions(value)
+}
+
+const onOptionClick=(option)=>{
+  setQuery({q:option.name})
+  setAddOpt(option.name)
+}
+
+useEffect(()=>{
+  if(addOpt){
+    setTerm(addOpt.name)
+    setOptions([]);
+    setCity('')
+  }
+},[addOpt])
+
   return (
+
     <div className='flex flex-col justify-center my-6 md:flex-row'>
 
       <div className='flex flex-col items-center justify-center space-x-4 sm:w-2/4 md:w-3/4 md:flex-row'>
-        <input 
-        type='text'
-        value={city}
-        onChange={(e)=>setCity(e.currentTarget.value)} 
-        placeholder='Search...'
-        className='p-2 text-xl font-light capitalize rounded-lg focus:outline-none placeholder:lowercase dark:bg-black dark:text-white'/>
+        <div className='relative'>
+          <input 
+            type='text'
+            value={city}
+            // onChange={(e)=>setCity(e.currentTarget.value)} 
+            onChange={(e)=>(setCity(e.currentTarget.value) , onInputChange(e))}
+            placeholder='Search...'
+            className='p-2 text-xl font-light capitalize rounded-lg focus:outline-none placeholder:lowercase dark:bg-black dark:text-white'
+          />
+            <ul className='absolute bg-white top-13 rounded-b-md dark:bg-black'>
+              {options.map((option,index)=> (
+                <li key={index}>
+                  <button
+                  onClick={()=>onOptionClick(option)}
+                  className='w-full px-3 py-2 text-sm text-left text-black cursor-pointer hover:bg-zinc-500 hover:text-white dark:text-white'>
+                    {option.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+        </div>
         <div className='flex flex-row mt-3 -mx-6 md:mt-0'>
         <UilSearch
           onClick={handleClick}
